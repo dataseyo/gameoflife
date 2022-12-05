@@ -67,7 +67,7 @@ const createGrid = (numRows: number, numCols: number): CellType[][]  => {
     return grid
 }
 
-const initialState: CellType[][] = createGrid(20, 20)
+const initialState: CellType[][] = createGrid(15, 15)
 
 const gridSlice = createSlice({
     name: 'grid',
