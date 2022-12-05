@@ -4,8 +4,11 @@ import './styles.css'
 import { useAppDispatch, useAppSelector } from '../../state/store'
 import {
   randomize,
-  mutate
+  mutate,
+  clear
 } from '../../state/gridSlice'
+import { FaPlay, FaStop, FaBars, FaTimes, FaRandom, FaEraser} from 'react-icons/fa'
+import Modal from '../Modal/Modal'
 
 type Props = {}
 
@@ -16,15 +19,10 @@ const Menu = (props: Props) => {
 
   // game/menu state
   const [isPaused, setIsPaused] = useState(true)
+  const [modalOpen, setModalOpen] = useState(false)
 
-  const handlePlay = () => {
-    const interval = setInterval(() => {
-      dispatch(mutate())
-    }, 500)
-  }
-
-  const handlePause = () => {
-
+  const handleModal = () => {
+    setModalOpen(!modalOpen)
   }
 
   // control whether game is paused or playing
@@ -35,43 +33,73 @@ const Menu = (props: Props) => {
         dispatch(mutate())
       }, 500)}
     
-    
     if (interval.current) {
       return () => clearInterval(interval.current as NodeJS.Timeout)
     } 
-    
-
+  
   }, [isPaused])
 
   return (
     <div className="menu__container">
-      <button 
-        className="menu-button"
-        onClick={() => dispatch(randomize())}
-      >
-        randomize
-      </button>
+        <FaRandom 
+          className="randomize-button"
+          onClick={() => dispatch(randomize())}
+          size="1.5em"
+        >
+        </FaRandom>
 
-      <button
+        {/* PLAY | PAUSE  */}
+        { isPaused ? 
+          <FaPlay
+            className="play-button"
+            onClick={(() => setIsPaused(false))}
+            size="1.5em"
+          />
+          : 
+          <FaStop
+            className="stop-button"
+            onClick={(() => setIsPaused(true))}
+            size="1.5em"
+          />
+        }
+
+      {
+        <FaEraser
+          className="eraser-button"
+          size="1.5em"
+          onClick={() => dispatch(clear())}
+        />
+      }
+      
+
+      {/* OPEN MODAL | CLOSE MODAL */}
+      {
+        modalOpen ?
+        <FaTimes
+          className="modal-button"
+          size="1.5em"
+          onClick={handleModal}
+        />
+        :
+        <FaBars
+          className="modal-button"
+          size="1.5em"
+          onClick={handleModal}
+        />
+      }
+      
+      
+      {/* <button
+        className="menu-button"
         onClick={() => dispatch(mutate())}
       >
         step
-      </button> 
+      </button>  */}
 
-      <button
-        onClick={(() => setIsPaused(false))}
-      >
-        play
-      </button>
-
-      <button
-        onClick={(() => setIsPaused(true))}
-      >
-        stop
-      </button>
-
-
-      
+      <Modal
+        open={modalOpen}
+        setOpen={setModalOpen}
+      />
     </div>
   )
 }

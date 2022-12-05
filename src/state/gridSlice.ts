@@ -145,6 +145,17 @@ const gridSlice = createSlice({
                     })
                 ]
             ])
+        },
+
+        clear: (state) => {
+            const newGrid = state.map(prevGrid => [
+                ...prevGrid,
+                [
+                    prevGrid.map(prevCell => {
+                        prevCell.active = false
+                    })
+                ]
+            ])
         }
     }
 })
@@ -155,7 +166,8 @@ export const {
     stop,
     mutate,
     randomize,
-    click
+    click,
+    clear
 } = gridSlice.actions
 
 // export reducer 

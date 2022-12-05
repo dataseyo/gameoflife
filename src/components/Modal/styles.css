@@ -1,0 +1,19 @@
+.modal {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 5px;
+    position: fixed;
+    top: 50%;
+    max-height: calc(100% - 200px);
+    left: calc(50% - 250px);
+}
+
+@media (max-width: 500px) {
+    .modal {
+        left: 0px;
+        margin: 0px 10px;
+    }
+  }

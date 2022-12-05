@@ -1,10 +1,42 @@
 .menu__container {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    border-radius: 5px;
+    min-width: 300px;
+    max-width: 500px;
+    padding: 8px;
+    margin: 8px;
 }
 
-.menu-button {
-    margin: 10px;
+.randomize-button {
+    margin: auto;
+    color: white;
+    cursor: pointer;
+}
+
+.play-button {
+    color: green;
+    cursor: pointer;
+    margin: auto;
+}
+
+.stop-button {
+    color: red;
+    cursor: pointer;
+    margin: auto;
+}
+
+.modal-button {
+    color: white;
+    cursor: pointer;
+    margin: auto;
+}
+
+.eraser-button {
+    color: white;
+    cursor: pointer;
+    margin: auto;
+
 }

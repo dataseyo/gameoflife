@@ -58,7 +58,7 @@ const Cell = ({
       // could change this to a react-spring useSpring toggled to run when active is toggled
       className={`cell ${active ? 'cell-active' : 'cell-inactive'}`} 
       onClick={toggleCell}
-      // onClick={() => calculateNeighbors(grid, x, y)}
+      key={`${x}${y}`}
     >
     </div>
   )
